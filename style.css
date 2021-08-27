@@ -11,6 +11,7 @@ body {
     height: 150px;
     width: 150px;
     border-radius: 10px;
+    margin: 4px;;
 
 }
 
@@ -19,9 +20,17 @@ body {
     color: lightskyblue;
 }
 
+.select#blue {
+    background-color: lightskyblue;
+}
+
 #red {
     background-color: seashell;
     color: lightcoral;
+}
+
+.select#red {
+    background-color: lightcoral;
 }
 
 #yellow {
@@ -29,7 +38,20 @@ body {
     color:goldenrod;
 }
 
+.select#yellow {
+    background-color: gold;
+}
+
 #green {
     background-color: seashell;
     color: lightseagreen;
+}
+
+.select#green {
+    background-color: lightgreen;
+}
+
+/* WRONG */
+.wrong {
+    background-color: red;
 }
