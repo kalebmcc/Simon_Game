@@ -10,8 +10,9 @@ const green = document.querySelector('#green');
 
 // ---------------GLOBAL_VARIABLES---------------
 let playerScore = 0
-let colorSequence = [1,2,3,4,3,2,1]
+let colorSequence = []
 let playerSequence = []
+let delay = 1000
 
 
 
@@ -35,12 +36,16 @@ function playGame(event) {
 
 	if (event.target.localName === 'button') {
 		playerChoice(event);
-		if (JSON.stringify(playerSequence) === JSON.stringify(colorSequence)) {
-			updateScore();
-			setTimeout(printSequence, 1000);
-		} else {
-			wrong();
+		if(playerSequence.length === colorSequence.length) {
+			if (JSON.stringify(playerSequence) === JSON.stringify(colorSequence)) {
+				updateScore();
+				setTimeout(printSequence, delay);
+				playerSequence = []
+			} else {
+				wrong();
+			}	
 		}
+	
 	}else {
         return;
     }
@@ -50,7 +55,6 @@ function addColor() {
     //FIRST TIME
 	//randomly selects color and add to sequence
 	let randomIndex = Math.ceil(Math.random() * 4);
-	console.log(randomIndex);
 	if (randomIndex === 1) {
 		selectButton(blue);
 		colorSequence.push(1);
@@ -88,9 +92,8 @@ function moreColor() {
 
 //Runs through colors
 function printSequence() {
-    colorSequence =[1,4,2,3,2,1,3,4]
     moreColor();
-    loopSequence(colorSequence,loop,500);
+    loopSequence(colorSequence,loop,delay);
 }
 //Allows for time between showing colors
 function loopSequence(array, delegate, delay) {
@@ -179,8 +182,8 @@ function colorSequenceRun() {
 }
 
 function updateScore() {
-    playerScore +=1
-    score.innertext = `Score:${playerScore}`
+    playerScore = playerScore + 1
+    score.innerText = `Score:${playerScore}`
 }
 
 function wrong() {
@@ -222,5 +225,5 @@ start.addEventListener('click', startGame)
 colorContainer.addEventListener('click', playGame)
 
 //mouse hover
-colorContainer.addEventListener('mouseover',hoverButton);
-colorContainer.addEventListener('mouseout', hoverButton);
+// colorContainer.addEventListener('mouseover',hoverButton);
+// colorContainer.addEventListener('mouseout', hoverButton);
