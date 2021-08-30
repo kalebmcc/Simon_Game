@@ -60,7 +60,7 @@ function startGame(event) {
 	//Change Start
 	start.style.display = 'none';
 	startSpacer.style.display = 'block'
-	start.innerText = "Try Again"
+	start.innerText = "TRY AGAIN"
 
     //randomly selects color and add to sequence
     addColor();
