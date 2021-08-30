@@ -1,5 +1,6 @@
 // ---------------SELECTIONS---------------
 const start = document.querySelector('.start');
+const startSpacer = document.querySelector('.start-spacer')
 const score = document.querySelector('.score');
 
 const colorContainer = document.querySelector('.color-container');
@@ -8,11 +9,36 @@ const red = document.querySelector('#red');
 const yellow = document.querySelector('#yellow');
 const green = document.querySelector('#green');
 
+const easy = document.getElementById('easy')
+const medium = document.getElementById('medium')
+const hard = document.getElementById('hard')
+// const extreme = document.getElementById()
+const difficulty = document.querySelector('.difficulty')
+const difficultySpacer = document.querySelector('.difficulty-spacer')
+
 // ---------------GLOBAL_VARIABLES---------------
 let playerScore = 0
 let colorSequence = []
 let playerSequence = []
 let delay = 1000
+let buttonDelay = 500
+let colors = [blue,red,yellow,green]
+
+// ---------------EVENTS---------------
+//begins game
+start.addEventListener('click', startGame)
+
+//player sequence
+colorContainer.addEventListener('click', playGame)
+
+//Difficulties
+easy.addEventListener('click', easyMode)
+medium.addEventListener('click', mediumMode)
+hard.addEventListener('click', hardMode)
+// extreme.addEventListener('click', extremeMode)
+//mouse hover
+// colorContainer.addEventListener('mouseover',hoverButton);
+// colorContainer.addEventListener('mouseout', hoverButton);
 
 
 
@@ -24,7 +50,17 @@ function startGame(event) {
     //resets
     playerSequence = []
     colorSequence = []
-    playScore = 0
+    playerScore = 0
+	score.innerText = `Score: ${playerScore}`
+
+	//remove difficulties
+	difficulty.style.display = 'none';
+	difficultySpacer.style.display = 'block'
+
+	//Change Start
+	start.style.display = 'none';
+	startSpacer.style.display = 'block'
+	start.innerText = "Try Again"
 
     //randomly selects color and add to sequence
     addColor();
@@ -36,11 +72,13 @@ function playGame(event) {
 
 	if (event.target.localName === 'button') {
 		playerChoice(event);
-		if(playerSequence.length === colorSequence.length) {
+		if(playerSequence.length >= colorSequence.length) {
 			if (JSON.stringify(playerSequence) === JSON.stringify(colorSequence)) {
 				updateScore();
+				winning();
 				setTimeout(printSequence, delay);
 				playerSequence = []
+				
 			} else {
 				wrong();
 			}	
@@ -136,35 +174,6 @@ function playerChoice(event) {
 		} else {
             return;
         }
-    
-        //WRONG CODE
-    // if (
-	// 		event.target.id === 'blue' &&
-	// 		colorSequence[colorSequence.length - 1] == 1
-	// 	) {
-	// 		selectButton(blue);
-	// 		setTimeout(addColor, 2000);
-	// 	} else if (
-	// 		event.target.id === 'red' &&
-	// 		colorSequence[colorSequence.length - 1] == 2
-	// 	) {
-	// 		selectButton(red);
-	// 		setTimeout(addColor, 2000);
-	// 	} else if (
-	// 		event.target.id === 'yellow' &&
-	// 		colorSequence[colorSequence.length - 1] == 3
-	// 	) {
-	// 		selectButton(yellow);
-	// 		setTimeout(addColor, 2000);
-	// 	} else if (
-	// 		event.target.id === 'green' &&
-	// 		colorSequence[colorSequence.length - 1] == 4
-	// 	) {
-	// 		selectButton(green);
-	// 		setTimeout(addColor, 2000);
-	// 	} else {
-    //         return wrong();
-    //     }
 }
 
 function colorSequenceRun() {
@@ -186,22 +195,59 @@ function updateScore() {
     score.innerText = `Score:${playerScore}`
 }
 
-function wrong() {
-    for(i=0; i<3; i++) {
-    red.classList.toggle('wrong');
-    green.classList.toggle('wrong');
-    yellow.classList.toggle('wrong');
-    blue.classList.toggle('wrong');
-	setTimeout(() => {red.classList.toggle('wrong');}, 300);
-    setTimeout(() => {yellow.classList.toggle('wrong');}, 300);
-    setTimeout(() => {green.classList.toggle('wrong');}, 300);
-    setTimeout(() => {blue.classList.toggle('wrong');}, 300);
-    }
+//DIFFICULTIES
+function easyMode() {
+	delay = 1000
+	buttonDelay = 500
+
 }
 
+function mediumMode() {
+	delay = 700
+	buttonDelay = 500
+}
+
+function hardMode() {
+	delay = 250
+	buttonDelay = 100
+}
+//WRONG ANSWER FUNCTIONS
+function wrong() {
+    colors.forEach(flashRed)
+	start.style.display = ''
+	difficulty.style.display = ''
+	startSpacer.style.display = 'none'
+	difficultySpacer.style.display = 'none'
+}
+
+function flashRed(color) {
+	color.classList.toggle('wrong');
+    setTimeout(() => {color.classList.toggle('wrong');},1000);
+}
+
+function winning() {
+	if(playerScore >=10) {
+		score.innerText = `Score: ${playerScore} - Nice Job!`
+	} else if(delay === 250 && playerScore >=10) {
+		loadExtremeMode();
+		score.innerText = `Score: ${playerScore} - Extreme-Mode Unlocked!`
+	}
+}
+
+//EXTRA Mode
+function loadExtremeMode() {
+	// let extremeButton = document.createElement('button')
+	// extremeButton.id = "extreme"
+	// extremeButton.innerText = extreme
+	// difficulty.appendChild(extremeButton)
+}
+
+
+
+//SELECTION - COLOR CHANGE FOR BUTTONS
 function selectButton(color) {
     color.classList.toggle('select')
-    setTimeout(() => {color.classList.toggle('select');},500);
+    setTimeout(() => {color.classList.toggle('select');},buttonDelay);
 }
 
 function hoverButton(event) {
@@ -211,19 +257,3 @@ function hoverButton(event) {
     }
     
 }
-
-
-
-
-
-
-// ---------------EVENTS---------------
-//begins game
-start.addEventListener('click', startGame)
-
-//player sequence
-colorContainer.addEventListener('click', playGame)
-
-//mouse hover
-// colorContainer.addEventListener('mouseover',hoverButton);
-// colorContainer.addEventListener('mouseout', hoverButton);

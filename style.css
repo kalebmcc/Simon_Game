@@ -1,15 +1,52 @@
 body {
     text-align: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: rgb(255, 255, 255);
+
+    /* fun */
+    /* background-image: url(https://image.cnbcfm.com/api/v1/image/101014487-Tool-Simon-Cowell.jpg?v=1528037881);
+    background-position: center;
+    background-size: cover;
+    -webkit-background-origin:border; */
 }
 
+h1 {
+    color:black;
+    height: 10%;
+}
+
+
+
+h2 {
+    color: black;
+    height: 10%;
+}
+
+.start {
+    height: 10%
+}
+.start-spacer {
+    height: 10%
+    display: none;
+}
+
+
+.difficulty {
+    display: block;
+    height: 10%;
+}
+
+.difficulty-spacer {
+    display: none;
+    height: 10%;
+}
 
 
 
 /* color buttons */
 .color-container button {
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     border-radius: 10px;
     margin: 4px;;
 
@@ -52,6 +89,18 @@ body {
 }
 
 /* WRONG */
-.wrong {
+.wrong#blue {
+    background-color: red;
+}
+
+.wrong#red {
+    background-color: red;
+}
+
+.wrong#yellow {
+    background-color: red;
+}
+
+.wrong#green {
     background-color: red;
 }
