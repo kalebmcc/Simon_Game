@@ -199,17 +199,25 @@ function updateScore() {
 function easyMode() {
 	delay = 1000
 	buttonDelay = 500
-
+	easy.classList = 'easy-click';
+	hard.classList = '';
+	medium.classList = '';
 }
 
 function mediumMode() {
 	delay = 700
 	buttonDelay = 500
+	medium.classList = "medium-click";
+	easy.classList = '';
+	hard.classList = '';
 }
 
 function hardMode() {
 	delay = 250
 	buttonDelay = 100
+	hard.classList = 'hard-click';
+	easy.classList = '';
+	medium.classList = '';
 }
 //WRONG ANSWER FUNCTIONS
 function wrong() {
@@ -229,8 +237,8 @@ function winning() {
 	if(playerScore >=10) {
 		score.innerText = `Score: ${playerScore} - Nice Job!`
 	} else if(delay === 250 && playerScore >=10) {
-		loadExtremeMode();
-		score.innerText = `Score: ${playerScore} - Extreme-Mode Unlocked!`
+		// loadExtremeMode();
+		score.innerText = `Score: ${playerScore} - Nice Job!`
 	}
 }
 
