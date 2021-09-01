@@ -12,7 +12,6 @@ const green = document.querySelector('#green');
 const easy = document.getElementById('easy')
 const medium = document.getElementById('medium')
 const hard = document.getElementById('hard')
-// const extreme = document.getElementById()
 const difficulty = document.querySelector('.difficulty')
 const difficultySpacer = document.querySelector('.difficulty-spacer')
 
@@ -35,12 +34,6 @@ colorContainer.addEventListener('click', playGame)
 easy.addEventListener('click', easyMode)
 medium.addEventListener('click', mediumMode)
 hard.addEventListener('click', hardMode)
-// extreme.addEventListener('click', extremeMode)
-//mouse hover
-// colorContainer.addEventListener('mouseover',hoverButton);
-// colorContainer.addEventListener('mouseout', hoverButton);
-
-
 
 // ---------------FUNCTIONS---------------
 // MAIN - before player input
@@ -237,17 +230,8 @@ function winning() {
 	if(playerScore >=10) {
 		score.innerText = `Score: ${playerScore} - Nice Job!`
 	} else if(delay === 250 && playerScore >=10) {
-		// loadExtremeMode();
 		score.innerText = `Score: ${playerScore} - Nice Job!`
 	}
-}
-
-//EXTRA Mode
-function loadExtremeMode() {
-	// let extremeButton = document.createElement('button')
-	// extremeButton.id = "extreme"
-	// extremeButton.innerText = extreme
-	// difficulty.appendChild(extremeButton)
 }
 
 
@@ -256,12 +240,4 @@ function loadExtremeMode() {
 function selectButton(color) {
     color.classList.toggle('select')
     setTimeout(() => {color.classList.toggle('select');},buttonDelay);
-}
-
-function hoverButton(event) {
-    console.log(event)
-    if(event.target.localName === 'button') {
-        event.target.classList.toggle('select')
-    }
-    
 }
