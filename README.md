@@ -15,8 +15,6 @@ A web application that allows you to play a color sequence memory game.
 -then in the Terminal "git clone {HTTPS or SSH Link}"
 
 # User Stories
-
-Add user stories following the As a [type of user], I want [what the user wants], so that [what it helps accomplish] format.
 -As a player, I want the game to start when I tell it to so that I am ready to play.
 -As a player, I want the game to keep track of my score so that I can see how well I played.
 -As a player, I want the game to have different difficulties so that I can try to win.
